@@ -2,15 +2,19 @@ import os
 from google.adk.agents import Agent
 
 def addition(a: float, b: float) -> float:
+	"""Adds two numbers."""
 	return a + b
 
 def substraction(a: float, b: float) -> float:
+	"""Subtracts two numbers."""
 	return a - b
 
 def multiplication(a: float, b: float) -> float:
+	"""Multiplies two numbers."""
 	return a * b
 
 def division(a: float, b: float) -> str:
+	"""Divides two numbers."""
 	if b == 0:
 		return "Cannot divide by zero."
 	return str(a / b)
