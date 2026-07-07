@@ -1,0 +1,78 @@
+Code Walkthrough
+Repository Structure
+.
+├── __init__.py
+├── agent-prompt.txt      # Root agent instructions
+├── agent.py              # Root agent configuration
+├── search_agent.py       # Search & Structure agent chain
+├── search-prompt.txt     # Search agent instructions
+├── tools.py              # Calculation tools
+├── .env-sample
+└── requirements.txt
+Step 1: Calculation Tools (tools.py)
+We implemented simple Python functions for the math logic.
+
+def calculate_percentage_change(initial_value: float, final_value: float):
+  if initial_value == 0:
+    return {"error": "Initial value cannot be zero."}
+  percentage_change = ((final_value - initial_value) / initial_value) * 100
+  return {"percentage_change": percentage_change}
+
+def calculate_profit_or_loss(number_of_shares: int, purchase_price: float,
+                             current_price: float):
+  # ... logic ...
+  return {"profit_or_loss": profit_or_loss}
+Step 2: The Search Agent Chain (search_agent.py)
+This is the core of the solution.
+
+1. The Base Search Agent This agent has the google_search tool.
+
+tools = [google_search]
+
+search_agent = Agent(
+  name="search_agent",
+  # ...
+  tools=tools,
+)
+2. The Structured Output Model We define what the data should look like.
+
+class StockSearchResult(BaseModel):
+  ticker: str = Field(..., description="Stock ticker symbol")
+  current_price: float = Field(..., description="Current stock price")
+  # ... other fields
+3. The Structured Agent This agent uses the search_agent as a tool (AgentTool(agent=search_agent)) and enforces the output_schema.
+
+structured_search_agent = Agent(
+  name="structured_search_agent",
+  # ...
+  tools=[AgentTool(agent=search_agent)],
+  output_schema=StockSearchResult,
+)
+4. The Final Tool We wrap the structured agent so the root agent can use it.
+
+search_agent_tool = AgentTool(agent=structured_search_agent)
+Step 3: The Root Agent (agent.py)
+The root agent brings everything together. It has access to the search_agent_tool (which gives it structured data) and the local calculation functions.
+
+tools = [
+  search_agent_tool,
+  calculate_percentage_change,
+  calculate_profit_or_loss
+]
+
+root_agent = Agent(
+  name="financial_assistant_agent",
+  description="An agent that can find financial information and perform calculations.",
+  # ...
+  tools=tools
+)
+Complete Example
+User Query: "What is the profit if I bought 10 shares of GOOG at $150 and I sold it today??"
+
+Root Agent: Decides it needs the current price of GOOG. Calls search_agent_tool.
+Structured Agent: Receives request. Calls its tool (the search_agent).
+Search Agent: Receives request. Calls google_search. Finds price is $ 160. Returns text.
+Structured Agent: Takes text, formats it into StockSearchResult JSON ( current_price: 160.0). Returns JSON.
+Root Agent: Receives JSON. Now has current_price=160.0. Calls calculate_profit_or_loss(10, 150, 160).
+Tool: Returns 100.0.
+Root Agent: Responds "You made a profit of $100.00."
