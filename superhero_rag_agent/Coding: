@@ -1,0 +1,50 @@
+Coding:
+- Leetcode
+- Neetcode
+
+
+System Design:
+Here is the recommended 60-minute timing breakdown:
+----------------------
+* Scoping & Discovery (approx. 15 mins): Aligning on customer business requirements and choosing between model options.
+* System Design & Architecture (approx. 25 mins): Walking through end-to-end data flow and infrastructure.
+* Deployment, Scalability, & Evaluation (approx. 15 mins): Designing metrics, quality monitoring, and live scaling.
+Quick Tip: At the start of the session, you will choose between two equal use cases based on your strengths: i) Agents and Workflow Automation or ii) GenMedia and Content Creation.
+----------------------
+
+Udacity:
+- Building Agents with Google ADK and Vertex AI (15 hrs)
+- Multi-Agent Systems with Google ADK and Vertex AI
+- Agentic Workflows with Google ADK
+- Product Manager (50 hrs)
+- AI Agents with LangChain and LangGraph (15 hrs)
+
+JD:
+• Experience implementing multi-agent systems using frameworks (e.g.,
+LangGraph, CrewAI, ADK) and patterns (e.g., ReAct, self-reflection,
+hierarchical delegation).
+• Knowledge of LLM-native metrics (e.g., tokens/sec, cost-per-request)
+and techniques for optimizing state management and granular tracing.
+• Experience architecting AI systems on cloud platforms (e.g., GCP).
+• Experience taking production-grade AI-driven solutions from
+conception to launch for customers.
+• Experience leading technical discovery sessions with customers.
+• Experience building pipelines for structured and unstructured data
+using both vector databases and retrieval-augmented generation
+(RAG)-like architectures to power enterprise AI solutions.
+
+
+Recruiter:
+- Deploy and Manage Generative AI Models: https://www.skills.google/paths/1283
+- Architecting with Google Kubernetes Engine Specialization: https://www.coursera.org/specializations/architecting-google-kubernetes-engine
+- Google Cloud Products: https://cloud.google.com/products (could have hands on deployment tools)
+
+Sahil's resources:
+- Chapter 19: Evaluation and Monitoring: https://drive.google.com/file/d/1-5ho2aSZ-z0FcW8W_jMUoFSQ5hTKvJ43/view
+- Use Cases, and Agent Design Patterns: https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system#multi-agent-systems
+- 
+
+
+
+
+
