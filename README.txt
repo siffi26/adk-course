@@ -13,7 +13,7 @@ If that's how your previous agents worked, continue using Vertex AI.
 Run:
 
 export GOOGLE_GENAI_USE_VERTEXAI=TRUE
-export GOOGLE_CLOUD_PROJECT=siffifirstagent
+export GOOGLE_CLOUD_PROJECT=<project_name>
 export GOOGLE_CLOUD_LOCATION=us-central1
 
 Then run:
